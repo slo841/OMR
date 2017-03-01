@@ -13,6 +13,15 @@ public class OpticalMarkReader {
 	 */
 	public AnswerSheet processPageImage(PImage image) {
 		
+		
 		return null;
+	}
+	
+	public int getPixelAt(int row, int col, PImage image) {
+		image.loadPixels();
+		
+		int index = row * image.width + col;
+		
+		return image.pixels[index];
 	}
 }
