@@ -20,13 +20,9 @@ public class AnswerSheet {
 		answers = new ArrayList<>(rows * numOfSections);
 	}
 
-//	public PImage getImage() {
-//		return image;
-//	}
-//
-//	public void setImage(PImage image) {
-//		this.image = image;
-//	}
+	public PImage getImage() {
+		return image;
+	}
 
 	public ArrayList<Integer> getPixels() {
 		return pixels;
