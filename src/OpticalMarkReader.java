@@ -16,18 +16,24 @@ public class OpticalMarkReader {
 	public AnswerSheet processPageImage(PImage image) {
 		image.filter(PImage.GRAY);
 
-		for (int row = 120; row < 315; row++) {
-			for (int col = 465; col < 900; col++) {
-				determineBubble(row, col, 45, 45, 5, image);
+		for (int row = 115; row < 322; row++) {
+			for (int col = 460; col < 900; col++) {
+				int a = determineBubble(row, col, 45, 45, 5, image);
 			}
 		}
 		return null;
 	}
 	
-	public int determineFirstBlackPixelInVerticalRange(int rowStart,int colStart, int vertical){
-		return 0;
+	public int[] processColumn(PImage image, int startX, int startY, int boxWidth, int boxHeight, int numRows) {
+		int [] answers = new int[numRows];
+		int counter = 0;
+		for (int row = startY; row < startY+boxHeight*numRows; row=row+boxHeight) {
+				answers[counter] = determineBubble(startY, startX, boxWidth, boxHeight, 5, image);
+				counter++;
+		}
+		return answers;
 	}
-
+	
 	public int getPixelAt(int row, int col, PImage image) {
 		image.loadPixels();
 

@@ -39,9 +39,9 @@ public class VisualTester extends PApplet {
 //				}
 //			}
 			
-			rect(33, 467, 20, 24);
-			rect(33, 620, 20, 24);
-			rect(33, 845, 20, 24);
+//			rect(33, 467, 20, 24);
+//			rect(33, 620, 20, 24);
+//			rect(33, 845, 20, 24);
 			//create rectangles around all the bubbles
 
 			fill(0);
