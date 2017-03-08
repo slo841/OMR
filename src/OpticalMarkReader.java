@@ -15,25 +15,34 @@ public class OpticalMarkReader {
 	 */
 	public AnswerSheet processPageImage(PImage image) {
 		image.filter(PImage.GRAY);
+		AnswerSheet answers;
+		answers = new AnswerSheet(48);
+		// for (int i = 115; i < 970; i = i + 283) {
+		// int[] columnAnswers = processColumn(image, i, 460, 90, 37, 12);
+		// for (int j = 0; j < columnAnswers.length; j++) {
+		// answers.addAnswer(columnAnswers[j]);
+		// }
+		// }
 
-		for (int row = 115; row < 322; row++) {
-			for (int col = 460; col < 900; col++) {
-				int a = determineBubble(row, col, 45, 45, 5, image);
+		for (int col = 125; col < 290; col = col + 36) {
+			for (int row = 460; row < 900; row = row + 38) {
+				answers.addAnswer(determineBubble(row, col, 38, 36, 5, image));
 			}
 		}
-		return null;
+
+		return answers;
 	}
-	
+
 	public int[] processColumn(PImage image, int startX, int startY, int boxWidth, int boxHeight, int numRows) {
-		int [] answers = new int[numRows];
+		int[] answers = new int[numRows];
 		int counter = 0;
-		for (int row = startY; row < startY+boxHeight*numRows; row=row+boxHeight) {
-				answers[counter] = determineBubble(startY, startX, boxWidth, boxHeight, 5, image);
-				counter++;
+		for (int row = startY; row < startY + boxHeight * numRows; row = row + boxHeight) {
+			answers[counter] = determineBubble(startY, startX, boxWidth, boxHeight, 5, image);
+			counter++;
 		}
 		return answers;
 	}
-	
+
 	public int getPixelAt(int row, int col, PImage image) {
 		image.loadPixels();
 
@@ -57,9 +66,9 @@ public class OpticalMarkReader {
 
 	public int getSumValue(int r, int c, int width, int height, PImage pixels) {
 		int sum = 0;
-
-		for (int row = 0; row < height; row++) {
-			for (int col = 0; col < width; col++) {
+		for (int row = r; row < height; row++) {
+		for (int col = c; col < width; col++) {
+			
 				sum += getPixelAt(row, col, pixels);
 			}
 		}

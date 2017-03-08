@@ -30,14 +30,15 @@ public class Main {
 		ArrayList<AnswerSheet> scoredSheets = new ArrayList<AnswerSheet>();
 
 		// Score the first page as the key
-		AnswerSheet key = markReader.processPageImage(images.get(0));
+		//AnswerSheet key = markReader.processPageImage(images.get(0));
 
 		for (int i = 1; i < images.size(); i++) {
 			PImage image = images.get(i);
 
 			AnswerSheet answers = markReader.processPageImage(image);
 
-			// do something with answers
+			answers.getAnswers();
 		}
+		//System.out.println(markReader.determineBubble(150, 460, 48, 36, 5, images.get(1)));
 	}
 }

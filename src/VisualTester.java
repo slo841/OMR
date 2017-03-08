@@ -11,6 +11,8 @@ import java.util.List;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 
+import com.sun.prism.paint.Color;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -21,6 +23,7 @@ public class VisualTester extends PApplet {
 	int currentImageIndex = 0;
 	int w = 1200;
 	int h = 900;
+	public static OpticalMarkReader markReader = new OpticalMarkReader();
 
 	public void setup() {
 		size(w, h);
@@ -44,8 +47,15 @@ public class VisualTester extends PApplet {
 //			rect(33, 845, 20, 24);
 			//create rectangles around all the bubbles
 
-			fill(0);
+			for (int col = 125; col< 290; col = col + 36) {
+				for (int row = 460; row < 900; row = row + 38) {
+					rect(col, row, 36, 38);
+					noFill();
+				}
+			}
+			
 			text(mouseX + " " + mouseY, 30, 30);
+			//fill(0);
 		}
 	}
 
