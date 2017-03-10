@@ -36,25 +36,14 @@ public class VisualTester extends PApplet {
 			current_image = images.get(currentImageIndex);
 			image(current_image, 0, 0); // display image i
 
-			/*text(mouseX + ", " + mouseY, mouseX, mouseY);
+			text(mouseX + ", " + mouseY, mouseX, mouseY);
 			fill(0);
 			
 			int w = 20; h = 20;
-			int color = OpticalMarkReader.countBlackPixels(mouseY, mouseX, w, h, current_image, 25);
+//			int color = OpticalMarkReader.getSumBlackPixels(mouseY, mouseX, w, h, current_image, 25);
+			int color = OpticalMarkReader.getPixelAt(mouseY, mouseX, current_image);
 			text(color, mouseX, mouseY + 40);
-			*/
 			
-//			for (int col = 467; col < w; col = col + 150) {
-//				for (int row = 33; row < h; row = row + 24) {
-//					rect(row, col, 20, 24);
-//				}
-//			}
-			
-//			rect(33, 467, 20, 24);
-//			rect(33, 620, 20, 24);
-//			rect(33, 845, 20, 24);
-			//create rectangles around all the bubbles
-
 			/*for (int col = 125; col< 290; col = col + 36) {
 				for (int row = 460; row < 900; row = row + 38) {
 					rect(col, row, 36, 38);
@@ -76,12 +65,12 @@ public class VisualTester extends PApplet {
 				}
 			}*/
 			
-			for (int col = 975; col< 1125; col = col + 36) {
+			/*for (int col = 975; col< 1125; col = col + 36) {
 				for (int row = 460; row < 900; row = row + 38) {
 					rect(col, row, 36, 38);
 					noFill();
 				}
-			}
+			}*/
 			
 		}
 	}
