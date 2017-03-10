@@ -1,5 +1,3 @@
-import java.text.Format;
-import java.util.ArrayList;
 
 import processing.core.PImage;
 
@@ -29,7 +27,7 @@ public class OpticalMarkReader {
 		
 		return answers;
 	}
-	
+
 	public void processColumn(int startRow, int startCol, int endRow, int endCol,
 			int boxWidth, int boxHeight, int boxSpacing, int numBoxes, PImage image, int threshold, 
 			AnswerSheet answers) {
