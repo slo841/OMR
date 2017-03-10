@@ -12,7 +12,7 @@ public class Main {
 		ArrayList<PImage> images = PDFHelper.getPImagesFromPdf(PDF_PATH);
 
 		System.out.println("Scoring all pages...");
-		scoreAllPages(images);
+		CSVData file = scoreAllPages(images);
 
 		System.out.println("Complete!");
 		
@@ -26,7 +26,7 @@ public class Main {
 	 * 
 	 * @param images List of images corresponding to each page of original pdf
 	 */
-	private static void scoreAllPages(ArrayList<PImage> images) {
+	private static CSVData scoreAllPages(ArrayList<PImage> images) {
 		ArrayList<AnswerSheet> scoredSheets = new ArrayList<AnswerSheet>();
 
 		// Score the first page as the key
@@ -52,16 +52,33 @@ public class Main {
 			data[i][3] = percentIncorrect;
 		}
 		
-		CSVData file = new CSVData(data);
+		return new CSVData(data);
+	}
+	
+	public static CSVData studentsScore(ArrayList<PImage> images, int numProblems) {
+		AnswerSheet key = markReader.processPageImage(images.get(0));
+		int[] questionsWrong = new int[numProblems];
+		
+		for (int i = 1; i < images.size(); i++) {
+			for (int j = 0; j < questionsWrong.length; j++) {
+				
+			}
+		}
 	}
 	
 	private static int getNumOfWrong(AnswerSheet sheet, AnswerSheet key) {
 		int count = 0;
 		for (int i = 0; i < sheet.getLength(); i++) {
-			if (sheet.getAnswer(i) != key.getAnswer(i)) {
+			if (!isAnswerRight(sheet, key, i)) {
 				count++;
 			}
 		}
 		return count;
+	}
+	
+	private static boolean isAnswerRight(AnswerSheet sheet, AnswerSheet key, int index) {
+		if (sheet.getAnswer(index) != key.getAnswer(index))
+			return false;
+		return true;
 	}
 }
