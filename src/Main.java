@@ -25,13 +25,11 @@ public class Main {
 
 		CSVData.writeDataToFile("/Desktop/NewWorkspace/OMR/question_scores.txt", strData2);
 
-		for (int i = 0; i < answers.size(); i++) {
-			answers.get(i).getAnswers();
-		}
+//		for (int i = 0; i < answers.size(); i++) {
+//			answers.get(i).getAnswers();
+//		}
 
 		System.out.println("Complete!");
-
-		// Optional: add a saveResults() method to save answers to a csv file
 	}
 
 	/***
@@ -54,8 +52,8 @@ public class Main {
 
 			int incorrect = getNumOfWrong(answers, key);
 			int correct = answers.getLength() - incorrect;
-			double percentIncorrect = Math.round((incorrect / answers.getLength()) * 1000.0) / 1000.0;
-			double percentCorrect = Math.round((correct / answers.getLength()) * 1000.0) / 1000.0;
+			double percentIncorrect = Math.round((incorrect / answers.getLength()) * 100.0) / 100.0;
+			double percentCorrect = Math.round((correct / answers.getLength()) * 100.0) / 100.0;
 
 			data[i][0] = correct;
 			data[i][1] = incorrect;
@@ -89,9 +87,6 @@ public class Main {
 
 	private static ArrayList<AnswerSheet> getPageAnswers(ArrayList<PImage> images) {
 		ArrayList<AnswerSheet> scoredSheets = new ArrayList<AnswerSheet>();
-
-		// Score the first page as the key
-		AnswerSheet key = markReader.processPageImage(images.get(0));
 
 		for (int i = 1; i < images.size(); i++) {
 			PImage image = images.get(i);
