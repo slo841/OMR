@@ -11,6 +11,10 @@ public class AnswerSheet {
 	public AnswerSheet(int numAnswers) {
 		answers = new ArrayList<Integer>();
 	}
+	
+	public int getLength() {
+		return answers.size();
+	}
 
 	public void addAnswer(int a) {
 		answers.add(a);

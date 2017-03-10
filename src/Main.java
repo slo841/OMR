@@ -30,15 +30,38 @@ public class Main {
 		ArrayList<AnswerSheet> scoredSheets = new ArrayList<AnswerSheet>();
 
 		// Score the first page as the key
-		//AnswerSheet key = markReader.processPageImage(images.get(0));
-
+		AnswerSheet key = markReader.processPageImage(images.get(0));
+		
+		//create a 2d array of data for each page using # of incorrect
+		double[][] data = new double[images.size()][4];
+		
 		for (int i = 1; i < images.size(); i++) {
 			PImage image = images.get(i);
 
 			AnswerSheet answers = markReader.processPageImage(image);
-
-			answers.getAnswers();
+			scoredSheets.add(answers);
+			
+			int incorrect = getNumOfWrong(answers, key);
+			int correct = answers.getLength() - incorrect;
+			double percentIncorrect = Math.round((incorrect / answers.getLength()) * 1000.0) / 1000.0;
+			double percentCorrect = Math.round((correct / answers.getLength()) * 1000.0) / 1000.0;
+			
+			data[i][0] = correct;
+			data[i][1] = incorrect;
+			data[i][2] = percentCorrect;
+			data[i][3] = percentIncorrect;
 		}
-		//System.out.println(markReader.determineBubble(150, 460, 48, 36, 5, images.get(1)));
+		
+		CSVData file = new CSVData(data);
+	}
+	
+	private static int getNumOfWrong(AnswerSheet sheet, AnswerSheet key) {
+		int count = 0;
+		for (int i = 0; i < sheet.getLength(); i++) {
+			if (sheet.getAnswer(i) != key.getAnswer(i)) {
+				count++;
+			}
+		}
+		return count;
 	}
 }
